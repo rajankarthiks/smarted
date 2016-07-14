@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-blue.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
