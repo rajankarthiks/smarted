@@ -23,13 +23,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+*[contenteditable] {
+    -webkit-user-select: auto !important;
+}
+
+*[contenteditable]:focus {
+    outline: none !important;
+}
+
 /* -- Google typography ------------------------------- */
 .title {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 38px;
+  font-weight: 200;
   line-height: 1.1;
   color: #212121;
-  text-transform: inherit;
+  text-transform: uppercase;;
   letter-spacing: inherit;
 }
 

@@ -2,12 +2,14 @@ var final_transcript = '';
 var recognizing = false;
 var ignore_onend;
 var start_timestamp;
+final_span.contentEditable = 'true';
+showInfo('info_start');
 if (!('webkitSpeechRecognition' in window)) {
   upgrade();
 } else {
   start_button.style.display = 'inline-block';
   var recognition = new webkitSpeechRecognition();
-  recognition.continuous = true;
+  recognition.continuous = false;
   recognition.interimResults = true;
 
   recognition.onstart = function() {
@@ -47,7 +49,7 @@ if (!('webkitSpeechRecognition' in window)) {
       showInfo('info_start');
       return;
     }
-    showInfo('');
+    showInfo('info_start');
     if (window.getSelection) {
       window.getSelection().removeAllRanges();
       var range = document.createRange();
@@ -66,11 +68,8 @@ if (!('webkitSpeechRecognition' in window)) {
       }
     }
     final_transcript = capitalize(final_transcript);
-    final_span.innerHTML = linebreak(final_transcript);
+    final_span.innerHTML = linebreak(final_span.innerHTML + ' ' + final_transcript);
     interim_span.innerHTML = linebreak(interim_transcript);
-    if (final_transcript || interim_transcript) {
-      showButtons('inline-block');
-    }
   };
 }
 
@@ -90,6 +89,12 @@ function upgrade() {
   showInfo('info_upgrade');
 }
 
+function keyPressed(event) {
+  if (event.ctrlKey && event.keyCode == 13 ) {
+    startButton(event);
+  }
+}
+
 function startButton(event) {
   if (recognizing) {
     recognition.stop();
@@ -99,34 +104,20 @@ function startButton(event) {
   recognition.lang = 'en-IN';
   recognition.start();
   ignore_onend = false;
-  final_span.innerHTML = '';
-  interim_span.innerHTML = '';
   start_img.src = 'mic-slash.gif';
   showInfo('info_allow');
-  start_timestamp = event.timeStamp;
 }
+
 
 function showInfo(s) {
   if (s) {
     for (var child = info.firstChild; child; child = child.nextSibling) {
       if (child.style) {
-        child.style.display = child.id == s ? 'inline' : 'none';
+        child.style.display = child.id == s ? 'block' : 'none';
       }
     }
     info.style.visibility = 'visible';
   } else {
     info.style.visibility = 'hidden';
   }
-}
-
-var current_style;
-function showButtons(style) {
-  if (style == current_style) {
-    return;
-  }
-  current_style = style;
-  copy_button.style.display = style;
-  email_button.style.display = style;
-  copy_info.style.display = 'none';
-  email_info.style.display = 'none';
 }

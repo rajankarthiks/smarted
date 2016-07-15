@@ -1,7 +1,7 @@
 <div class="container">
     <div id="info">
-      <div id="info_start" class="alert alert-info" role="alert">Click on the microphone icon and begin speaking.</div>
-      <div id="info_speak_now" class="alert alert-success" role="alert">Speak now.</div>
+      <div id="info_start" class="alert alert-info" role="alert">Click on the microphone icon or press "Ctrl + Enter" key to start speaking.</div>
+      <div id="info_speak_now" class="alert alert-success" role="alert">Start speaking now.</div>
       <div id="info_no_speech" class="alert alert-danger" role="alert">
         No speech was detected. You may need to adjust your
         <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">

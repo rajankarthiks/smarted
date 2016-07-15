@@ -4,8 +4,10 @@
 
 <div class="mdl-grid ">
 
-
-
+  <div class="mdl-cell mdl-cell--12-col">
+    @include('layouts.speech-info')
+  </div>
+  
   <div class="mdl-cell mdl-cell--12-col">
     <div class="right">
       <button id="start_button" onclick="startButton(event)">
@@ -16,10 +18,7 @@
       <span id="interim_span" class="interim"></span>
       <p>
     </div>
-  </div>
 
-  <div class="mdl-cell mdl-cell--12-col">
-    @include('layouts.speech-info')
   </div>
 
 <script src="/js/speech.js"></script>
