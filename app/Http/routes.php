@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('/speech-writer', function () {
+    return view('speech-writer');
+});
