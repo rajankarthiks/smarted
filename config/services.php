@@ -39,4 +39,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'microsoft' => [
+        'linguistic_api' => env('MICROSOFT_LINGUISTIC_API_KEY'),
+    ],
+
 ];
