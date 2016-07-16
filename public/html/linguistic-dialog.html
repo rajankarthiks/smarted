@@ -1,0 +1,38 @@
+<md-dialog aria-label="Linguistic Analysis">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Linguistic Analysis</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          X
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Sentences &amp; Words">
+          <md-content class="md-padding" layout-xs="column" layout="row">
+                <div flex-md flex-gt-xs="100" layout="column">
+                  <md-card>
+                    <md-card-content>
+                      <p class="md-headline">{{ text }}</p>
+                      <p class="md-headline"><pre>{{ result | json }}</pre></p>
+                    </md-card-content>
+                </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Constituency Tree">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Constituency Tree</h1>
+            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="Part-of-Speech Tagging">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Part-of-Speech Tagging</h1>
+            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+</md-dialog>

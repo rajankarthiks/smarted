@@ -1127,38 +1127,30 @@ body {
         -webkit-transform: scale(1);
     }
 }
-.bottomSheetdemoBasicUsage .md-inline-list-icon-label {
-    display: inline-block;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: -10px;
-    height: 24px;
-    vertical-align: middle;
-}
-.bottomSheetdemoBasicUsage .md-grid-item-content {
-    height: 90px;
-    padding-top: 10px;
-}
-.bottomSheetdemoBasicUsage .md-grid-item-content md-icon {
-    height: 48px;
-    width: 48px;
-}
-.bottomSheetdemoBasicUsage .md-grid-text {
-    padding-bottom: 5px;
-}
-.bottomSheetdemoBasicUsage md-list-item, .bottomSheetdemoBasicUsage md-list-item ._md-list-item-inner {
-    min-height: 48px;
-}
-.bottomSheetdemoBasicUsage h2 {
-    line-height: 36px;
-    padding-top: 10px;
-}
-.bottomSheetdemoBasicUsage .md-subheader ._md-subheader-inner {
-    padding: 0;
-}
-.bottomSheetdemoBasicUsage md-toast .md-toast-content {
-    background-color: #B14141;
-}
-.bottomSheetdemoBasicUsage md-toast> * {
-    font-weight: bolder;
-}
+
+.progressCirculardemoBasicUsage body {
+  padding: 20px; }
+.progressCirculardemoBasicUsage h4 {
+  margin: 10px 0; }
+.progressCirculardemoBasicUsage md-progress-circular {
+  margin-bottom: 20px; }
+.progressCirculardemoBasicUsage #loaders > md-switch {
+  margin: 0;
+  margin-left: 10px;
+  margin-top: -10px; }
+.progressCirculardemoBasicUsage #loaders > h5 {
+  margin-top: 0; }
+.progressCirculardemoBasicUsage #loaders > p {
+  margin-right: 20px;
+  margin-bottom: 24px; }
+.progressCirculardemoBasicUsage p.small {
+  font-size: 0.8em;
+  margin-top: -18px; }
+.progressCirculardemoBasicUsage hr {
+  width: 100%;
+  margin-top: 20px;
+  border-color: rgba(221, 221, 177, 0.1); }
+.progressCirculardemoBasicUsage p.small > code {
+  font-size: 0.8em; }
+.progressCirculardemoBasicUsage .visible {
+  border-color: rgba(221, 221, 177, 0); }

@@ -1,34 +1,16 @@
 <md-bottom-sheet class="md-grid" layout="column" ng-cloak>
     <div layout="row" layout-align="center center">
-        <h6>Wirte Smart is an intelligent writing practice with power packed features to make you more efficent on writing and is backed by
+        <h6>Wirte Smart is an intelligent writing practice with power packed features to
+          make you more efficent on writing and is backed by
         <code>Artificial Intelligence</code>
     </h6>
     </div>
     <div>
         <md-list flex layout="row" layout-align="center center">
-            <md-list-item ng-repeat="item in items">
-                <div>
-                    <div class="container">
-                        <div class="col-md-4">
-                            <!-- Colored raised button -->
-                            <button class="mdl-button btn-lg mdl-js-button mdl-button--raised mdl-button--colored" ng-click="listItemClick($index)">
-                                {{ item.name }} <i class="material-icons" role="presentation">{{item.icon}}</i>
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- Colored raised button -->
-                            <button disabled class="mdl-button btn-lg mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="listItemClick($index)">
-                                {{ item.name }} <i class="material-icons" role="presentation">{{item.icon}}</i>
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <!-- Colored raised button -->
-                            <button disabled class="mdl-button btn-lg mdl-js-button mdl-button--raised mdl-button--pink" ng-click="listItemClick($index)">
-                                {{ item.name }} <i class="material-icons" role="presentation">{{item.icon}}</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <md-list-item ng-repeat="item in items" style="height:50px !important;">
+                <md-button class="md-raised md-primary" ng-click="showDialog($event)">
+                    {{ item.name }}</i>
+                </md-button>
             </md-list-item>
         </md-list>
     </div>

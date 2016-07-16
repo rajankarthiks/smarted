@@ -17,6 +17,7 @@
 </head>
 
 <body onkeydown="keyPressed(event)">
+
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div role="button" class="mdl-layout__drawer-button"><i class="material-icons">menu</i></div>
