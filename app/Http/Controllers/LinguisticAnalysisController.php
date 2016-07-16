@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 use App\Microsoft\LinguisticApi;
 
 class LinguisticAnalysisController extends Controller
 {
 
-    public function analyse()
+    public function listAnalyzers()
     {
-        $text = 'Hi This is Karthik Rajan';
+        return LinguisticApi::listAnalyzers();
+    }
+
+    public function analyse(Request $request)
+    {
+        $input = $request->input('text');
+        $text = isset($input) ? $input : 'This is a Test Text';
 
         return LinguisticApi::analyze($text);
     }
