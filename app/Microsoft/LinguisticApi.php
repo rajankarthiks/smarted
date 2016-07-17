@@ -37,6 +37,8 @@ class LinguisticApi extends AbstractApi
 
         $this->analysedText =  json_decode($response->getBody());
 
+        // return $this->analysedText =  json_decode($response->getBody());
+
         return $this->getInsightsForAnalysedText();
 
     }
@@ -44,8 +46,10 @@ class LinguisticApi extends AbstractApi
     protected function getInsightsForAnalysedText()
     {
 
-        return $this->getTokenizedInsights();
-
+        return array_merge(
+                  array_merge( $this->getTokenizedInsights(), $this->getConstituencyInsights() ),
+                  $this->getPOSInsights()
+               );
     }
 
     protected function getTokenizedInsights()
@@ -72,7 +76,7 @@ class LinguisticApi extends AbstractApi
                     'length' => $word->Len,
                     'offset' => $word->Offset,
                     'original_word' => $word->RawToken,
-                    'corrected_word' => $word->NormalizedToken,
+                    'normalized_word' => $word->NormalizedToken,
                   ];
               }),
               'no_of_words'  => $words->count(),
@@ -86,6 +90,34 @@ class LinguisticApi extends AbstractApi
         ];
 
         return $response;
+
+    }
+
+    protected function getConstituencyInsights()
+    {
+        $analyzerId = $this->getAnalyzerIDs()['costituency_tree'];
+
+        $result = collect($this->analysedText)->filter(function($value,$key) use ($analyzerId) {
+              $result = (array) $value;
+              return $result['analyzerId'] == $analyzerId;
+        })->flatten()->first()->result;
+
+        return [
+          "constituency_tree" => $result
+        ];
+
+    }
+
+    protected function getPOSInsights()
+    {
+        $analyzerId = $this->getAnalyzerIDs()['pos_tags'];
+
+        $result = collect($this->analysedText)->filter(function($value,$key) use ($analyzerId) {
+              $result = (array) $value;
+              return $result['analyzerId'] == $analyzerId;
+        })->flatten()->first()->result;
+
+        return ['part_of_speech' => $result];
 
     }
 

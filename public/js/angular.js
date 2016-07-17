@@ -17,21 +17,21 @@
                 }
             };
         }])
-        // .controller('AppCtrl', ['$interval',
-        //     function($interval) {
-        //         var self = this;
-        //         self.activated = true;
-        //         self.determinateValue = 30;
-        //         // Iterate every 100ms, non-stop and increment
-        //         // the Determinate loader.
-        //         $interval(function() {
-        //             self.determinateValue += 1;
-        //             if (self.determinateValue > 100) {
-        //                 self.determinateValue = 30;
-        //             }
-        //         }, 100);
-        //     }
-        // ])
+        .controller('AppCtrl', ['$interval',
+            function($interval) {
+                var self = this;
+                self.activated = true;
+                self.determinateValue = 30;
+                // Iterate every 100ms, non-stop and increment
+                // the Determinate loader.
+                $interval(function() {
+                    self.determinateValue += 1;
+                    if (self.determinateValue > 100) {
+                        self.determinateValue = 30;
+                    }
+                }, 100);
+            }
+        ])
         .controller('BottomSheet', function($scope, $timeout, $mdBottomSheet, $mdToast) {
             $scope.alert = '';
             $scope.showGridBottomSheet = function() {
@@ -43,7 +43,7 @@
                 });
             };
         })
-        .controller('BottomSheetCtrl', function($scope, $mdBottomSheet, $mdDialog, $http) {
+        .controller('BottomSheetCtrl', function($scope, $mdBottomSheet, $mdDialog) {
             $scope.items = [{
                 name: 'Linguistic Analysis',
                 value: '1'
@@ -54,42 +54,71 @@
             $scope.showDialog = function($event) {
                 $mdBottomSheet.hide();
 
-                var data = {
-                    text: $('#final_span').text()
-                };
-                var res = $http.post('/linguistic-analysis', data);
-                res.success(function(data) {
-                    $scope.result = data;
-                    $mdDialog.show({
-                        locals: {
-                            data: {
-                                text: $('#final_span').text(),
-                                result: $scope.result
-                            }
-                        },
-                        controller: LinguisticDialogController,
-                        templateUrl: '/html/linguistic-dialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: $event,
-                        clickOutsideToClose: true
-                    });
-
-                });
-                res.error(function(data, status, headers, config) {
-                    console.log("failure message: " + JSON.stringify({
-                        data: data
-                    }));
+                $mdDialog.show({
+                    controller: LinguisticDialogController,
+                    templateUrl: '/html/linguistic-dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                    fullscreen: true
                 });
 
             };
         }).controller('LinguisticDialogController', LinguisticDialogController);
 
-    function LinguisticDialogController($scope, $mdDialog, data) {
+    function constituencyTree(tree) {
+
+        var par = $("#constituency");
+
+        var root = new Treenode('PARA');
+        for (var i = 0, len = tree.length; i < len; ++i) {
+            console.log(tree[i]);
+            var pt = parseCnfTree(tree[i]);
+            root.children.push(pt);
+        }
+        var can = $("<canvas>")[0];
+        par.append(can);
+        var ctx = can.getContext("2d");
+        drawConstituentTree(can, ctx, root);
+    }
+
+    function seperateSentances(sentences) {
+      var toplist = $("<ol>");
+      for (var i = 0, len = sentences.length; i < len; ++i) {
+          var sentence = sentences[i];
+          var list = $("<li>");
+          for (var j = 0, len2 = sentence.words.length; j < len2; ++j) {
+              list.append(sentence.words[j].normalized_word + ' ');
+          }
+          toplist.append(list);
+      }
+      $('#sentence-list').append(toplist.html());
+    }
+
+    function LinguisticDialogController($scope, $mdDialog, $http) {
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
 
-        $scope.text = data.text;
-        $scope.result = data.result;
+        var text = $('#final_span').text() || "What did you say?!? I didn't hear about the director's 'new proposal.' It's important to Mr. and Mrs. Smith.";
+        var data = {
+            text: text
+        };
+
+        $scope.text = text;
+
+        var res = $http.post('/linguistic-analysis', data);
+        res.success(function(data) {
+            $scope.result = data;
+            $scope.part_of_speech = $scope.result.part_of_speech;
+            $scope.constituency = $scope.result.constituency_tree;
+            seperateSentances($scope.result.sentences);
+            constituencyTree($scope.result.constituency_tree);
+        });
+        res.error(function(data, status, headers, config) {
+            $scope.result = "failure message: " + JSON.stringify({
+                data: data
+            });
+        });
 
     }

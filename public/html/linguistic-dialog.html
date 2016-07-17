@@ -1,38 +1,452 @@
 <md-dialog aria-label="Linguistic Analysis">
     <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Linguistic Analysis</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          X
-        </md-button>
-      </div>
+        <div class="md-toolbar-tools">
+            <h2>Linguistic Analysis</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                X
+            </md-button>
+        </div>
     </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px; ">
-      <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Sentences &amp; Words">
-          <md-content class="md-padding" layout-xs="column" layout="row">
-                <div flex-md flex-gt-xs="100" layout="column">
-                  <md-card>
-                    <md-card-content>
-                      <p class="md-headline">{{ text }}</p>
-                      <p class="md-headline"><pre>{{ result | json }}</pre></p>
-                    </md-card-content>
-                </div>
-          </md-content>
-        </md-tab>
-        <md-tab label="Constituency Tree">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">Constituency Tree</h1>
-            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-          </md-content>
-        </md-tab>
-        <md-tab label="Part-of-Speech Tagging">
-          <md-content class="md-padding">
-            <h1 class="md-display-2">Part-of-Speech Tagging</h1>
-            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-          </md-content>
-        </md-tab>
-      </md-tabs>
+    <md-dialog-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Sentences &amp; Tokens">
+                <md-content class="md-padding">
+                    <p class="md-title">Sentenances &amp; Tokens</p>
+                    <p>Linguistic analysis include sentence separation and tokenization of the given text as it's first step to understand the meaning.</p>
+                    <md-card>
+                        <md-card-content>
+                            <p class="md-title"> Sentence Seperation </p>
+                            <p class="md-subhead">{{ text }}</p>
+                            <div class="loading-spiner-holder" data-loading ng-controller="AppCtrl as vm" ng-cloak>
+                                <div class="loading-spiner">
+                                    <md-content md-theme="docs-dark" layout-padding>
+                                        <md-progress-circular ng-disabled="!vm.activated" md-mode="intermediate" md-diameter="20"></md-progress-circular>
+                                    </md-content>
+                                </div>
+                            </div>
+                            <pre>
+                            <div id="sentence-list"></div>
+                            </pre>
+                            <p class="md-headline"> More Details
+                                <br/>
+                                <pre>{{ result | json }}</pre>
+                            </p>
+
+                        </md-card-content>
+                </md-content>
+            </md-tab>
+            <md-tab label="Constituency Tree">
+                <md-content class="md-padding">
+                    <p class="md-title">Constituency Tree</p>
+                    <p>The goal of constituency parsing (also known as "phrase structure parsing") is to identify the phrases in the text. This can be useful when extracting information from text. Customers might want to find feature names or key phrases
+                        from a big body of text, and to see the modifiers and actions surrounding each such phrase.</p>
+                    <md-card>
+                        <md-card-content>
+                            <p class="md-headline">{{ text }}</p>
+                            <br/>
+                            <div id="constituency"></div>
+                            <pre>
+                              <p class="md-headline">Legend</p>
+                              <table>
+                                  <thead>
+                                      <tr>
+                                          <th>Label</th>
+                                          <th>Description</th>
+                                          <th>Example</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>ADJP</td>
+                                          <td>Adjective Phrase</td>
+                                          <td>"so rude"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>ADVP</td>
+                                          <td>Adverb Phrase</td>
+                                          <td>"clear through"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>CONJP</td>
+                                          <td>Conjunction Phrase</td>
+                                          <td>"as well as"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>FRAG</td>
+                                          <td>Fragment, used for incomplete or fragmentary inputs</td>
+                                          <td>"Highly recommended..."</td>
+                                      </tr>
+                                      <tr>
+                                          <td>INTJ</td>
+                                          <td>Interjection</td>
+                                          <td>"Hooray"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>LST</td>
+                                          <td>List marker, including punctuation</td>
+                                          <td>"#4)"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>NAC</td>
+                                          <td>Not A Constituent, used to indicate scoping of a non-constituent phrase</td>
+                                          <td>"and for a good deal" in "you get things and for a good deal"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>NP</td>
+                                          <td>Noun Phrase</td>
+                                          <td>"a tasty potato pancake"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>NX</td>
+                                          <td>Used within certain complex NPs to mark the head</td>
+                                          <td></td>
+                                      </tr>
+                                      <tr>
+                                          <td>PP</td>
+                                          <td>Prepositional Phrase</td>
+                                          <td>"in the pool"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>PRN</td>
+                                          <td>Parenthetical</td>
+                                          <td>"(so called)"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>PRT</td>
+                                          <td>Particle</td>
+                                          <td>"out" in "ripped out"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>QP</td>
+                                          <td>Quantity Phrase (i.e., complex measure/amount) within a Noun Phrase</td>
+                                          <td>"around $75"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>RRC</td>
+                                          <td>Reduced Relative Clause.</td>
+                                          <td>"still unresolved" in "many issues still unresolved"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>S</td>
+                                          <td>Sentence or clause.</td>
+                                          <td>"This is a sentence."</td>
+                                      </tr>
+                                      <tr>
+                                          <td>SBAR</td>
+                                          <td>Subordinate clause, often introduced by a subordinating conjunction</td>
+                                          <td>"as I left" in "I looked around as I left."</td>
+                                      </tr>
+                                      <tr>
+                                          <td>SBARQ</td>
+                                          <td>Direct question introduced by a wh-word or -phrase</td>
+                                          <td>"What was the point?"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>SINV</td>
+                                          <td>Inverted declarative sentence</td>
+                                          <td>"At no time were they aware." (note how the normal subject "they" was moved to after the verb "were")</td>
+                                      </tr>
+                                      <tr>
+                                          <td>SQ</td>
+                                          <td>Inverted yes/no question, or main clause of a wh- question</td>
+                                          <td>"Did they get the car?"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>UCP</td>
+                                          <td>Unlike Coordinated Phrase</td>
+                                          <td>"small and with bugs" (note how an adjective and a preposition phrase are conjoined with "and")</td>
+                                      </tr>
+                                      <tr>
+                                          <td>VP</td>
+                                          <td>Verb Phrase</td>
+                                          <td>"ran into the woods"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>WHADJP</td>
+                                          <td>Wh-adjective Phrase</td>
+                                          <td>"how uncomfortable"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>WHADVP</td>
+                                          <td>Wh-adverb Phrase</td>
+                                          <td>"when"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>WHNP</td>
+                                          <td>Wh-noun Phrase</td>
+                                          <td>"which potato", "how much soup"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>WHPP</td>
+                                          <td>Wh-prepositional Phrase</td>
+                                          <td>"in which country"</td>
+                                      </tr>
+                                      <tr>
+                                          <td>X</td>
+                                          <td>Unknown, uncertain, or unbracketable.</td>
+                                          <td>first "the" in "the... the soup"</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                            </pre>
+                        </md-card-content>
+                </md-content>
+            </md-tab>
+            <md-tab label="Part-of-Speech Tagging">
+                <md-content class="md-padding">
+                    <p class="md-title">Part of Speech Tagging</p>
+                    <p>The Part of Speec Tagging is the process of identifying the category or part-of-speech of each word. These include categories like noun and verb.</p>
+                    <md-card>
+                        <md-card-content>
+                            <p class="md-headline">{{ text }}</p>
+                            <p class="md-headline">
+                                <pre>{{ part_of_speech }}</pre>
+                            </p>
+                            <md-card>
+                              <md-card-content>
+                              <p class="md-headline">Legend</p>
+                              <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tag</th>
+                                        <th>Description</th>
+                                        <th>Example words</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>$</td>
+                                        <td>dollar</td>
+                                        <td>$</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>| opening quotation mark | `</code></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>''</td>
+                                        <td>closing quotation mark</td>
+                                        <td>' ''</td>
+                                    </tr>
+                                    <tr>
+                                        <td>(</td>
+                                        <td>opening parenthesis</td>
+                                        <td>( [ {</td>
+                                    </tr>
+                                    <tr>
+                                        <td>)</td>
+                                        <td>closing parenthesis</td>
+                                        <td>) ] }</td>
+                                    </tr>
+                                    <tr>
+                                        <td>,</td>
+                                        <td>comma</td>
+                                        <td>,</td>
+                                    </tr>
+                                    <tr>
+                                        <td>--</td>
+                                        <td>dash</td>
+                                        <td>--</td>
+                                    </tr>
+                                    <tr>
+                                        <td>.</td>
+                                        <td>sentence terminator</td>
+                                        <td>. ! ?</td>
+                                    </tr>
+                                    <tr>
+                                        <td>:</td>
+                                        <td>colon or ellipsis</td>
+                                        <td>: ; ...</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CC</td>
+                                        <td>conjunction, coordinating</td>
+                                        <td>and but or yet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CD</td>
+                                        <td>numeral, cardinal</td>
+                                        <td>nine 20 1980 '96</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DT</td>
+                                        <td>determiner</td>
+                                        <td>a the an all both neither</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EX</td>
+                                        <td>existential there</td>
+                                        <td>there</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FW</td>
+                                        <td>foreign word</td>
+                                        <td>enfant terrible hoi polloi je ne sais quoi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IN</td>
+                                        <td>preposition or subordinating conjunction</td>
+                                        <td>in inside if upon whether</td>
+                                    </tr>
+                                    <tr>
+                                        <td>JJ</td>
+                                        <td>adjective or numeral, ordinal</td>
+                                        <td>ninth pretty execrable multimodal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>JJR</td>
+                                        <td>adjective, comparative</td>
+                                        <td>better faster cheaper</td>
+                                    </tr>
+                                    <tr>
+                                        <td>JJS</td>
+                                        <td>adjective, superlative</td>
+                                        <td>best fastest cheapest</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LS</td>
+                                        <td>list item marker</td>
+                                        <td>(a) (b) 1 2 A B A. B.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MD</td>
+                                        <td>modal auxiliary</td>
+                                        <td>can may shall will could might should ought</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NN</td>
+                                        <td>noun, common, singular or mass</td>
+                                        <td>potato money shoe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NNP</td>
+                                        <td>noun, proper, singular</td>
+                                        <td>Kennedy Roosevelt Chicago Weehauken</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NNPS</td>
+                                        <td>noun, proper, plural</td>
+                                        <td>Springfields Bushes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NNS</td>
+                                        <td>noun, common, plural</td>
+                                        <td>pieces mice fields</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PDT</td>
+                                        <td>pre-determiner</td>
+                                        <td>all both half many quite such sure this</td>
+                                    </tr>
+                                    <tr>
+                                        <td>POS</td>
+                                        <td>genitive marker</td>
+                                        <td>' 's</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PRP</td>
+                                        <td>pronoun, personal</td>
+                                        <td>she he it I we they you</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PRP$</td>
+                                        <td>pronoun, possessive</td>
+                                        <td>hers his its my our their your</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RB</td>
+                                        <td>adverb</td>
+                                        <td>clinically only</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RBR</td>
+                                        <td>adverb, comparative</td>
+                                        <td>further gloomier grander graver greater grimmer harder harsher healthier heavier higher however larger later leaner lengthier less-perfectly lesser lonelier longer louder lower more ...</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RBS</td>
+                                        <td>adverb, superlative</td>
+                                        <td>best biggest bluntest earliest farthest first furthest hardest heartiest highest largest least less most nearest second tightest worst</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RP</td>
+                                        <td>particle</td>
+                                        <td>on off up out about</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SYM</td>
+                                        <td>symbol</td>
+                                        <td>% &amp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TO</td>
+                                        <td>"to" as preposition or infinitive marker</td>
+                                        <td>to</td>
+                                    </tr>
+                                    <tr>
+                                        <td>UH</td>
+                                        <td>interjection</td>
+                                        <td>uh hooray howdy hello</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VB</td>
+                                        <td>verb, base form</td>
+                                        <td>give assign fly</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VBD</td>
+                                        <td>verb, past tense</td>
+                                        <td>gave assigned flew</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VBG</td>
+                                        <td>verb, present participle or gerund</td>
+                                        <td>giving assigning flying</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VBN</td>
+                                        <td>verb, past participle</td>
+                                        <td>given assigned flown</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VBP</td>
+                                        <td>verb, present tense, not 3rd person singular</td>
+                                        <td>give assign fly</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VBZ</td>
+                                        <td>verb, present tense, 3rd person singular</td>
+                                        <td>gives assigns flies</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WDT</td>
+                                        <td>WH-determiner</td>
+                                        <td>that what which</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WP</td>
+                                        <td>WH-pronoun</td>
+                                        <td>who whom</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WP$</td>
+                                        <td>WH-pronoun, possessive</td>
+                                        <td>whose</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WRB</td>
+                                        <td>Wh-adverb</td>
+                                        <td>how however whenever where</td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                            </md-card-content>
+                            </md-card>
+                        </md-card-content>
+                </md-content>
+            </md-tab>
+        </md-tabs>
     </md-dialog-content>
 </md-dialog>
