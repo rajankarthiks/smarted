@@ -31,7 +31,6 @@
                     parent: angular.element(document.body),
                     targetEvent: $event,
                     clickOutsideToClose: true,
-                    fullscreen: true
                 });
 
             };
@@ -48,7 +47,6 @@
                     parent: angular.element(document.body),
                     targetEvent: $event,
                     clickOutsideToClose: true,
-                    fullscreen: true
                 });
 
             };
