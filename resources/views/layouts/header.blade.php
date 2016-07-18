@@ -29,7 +29,10 @@
                     <i class="material-icons">more_vert</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li class="mdl-menu__item">Home</li>
+                    <li class="mdl-menu__item">
+                        <a class="mdl-navigation__link" href="/">
+                        <i class="material-icons" role="presentation">home</i> Home</a>
+                    </li>
                 </ul>
             </div>
         </header>
