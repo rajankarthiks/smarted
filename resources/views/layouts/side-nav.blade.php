@@ -1,5 +1,5 @@
 <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">SmartEd Ecosystem</span>
+    <span class="mdl-layout-title">SmartAIEd</span>
     <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="/"><i class="material-icons" role="presentation">home</i> Home</a>
         <a class="mdl-navigation__link" href="/write-smart">
