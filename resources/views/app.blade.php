@@ -11,7 +11,7 @@
                 </span>
             </span>
         </a>
-        <a class="tile tile-lg tile-indigo ripple-effect" href="/write-smart">
+        <a class="tile tile-lg tile-indigo ripple-effect" href="#" ng-click="showWriteSmart();">
             <span class="content-wrapper">
                 <span class="tile-content">
                     <span class="tile-holder tile-holder-sm">
@@ -23,7 +23,7 @@
         <a class="tile tile-lg tile-sqr tile-green ripple-effect" href="#">
             <span class="content-wrapper">
                 <span class="tile-content">
-                    <span class="tile-img" style="background-image: url(http://www.google.com/design/images/materialreel.png);"></span>
+                    <span class="tile-img"></span>
                     <span class="tile-holder tile-holder-sm">
                         <span class="title">Quiz Bot </span>
                     </span>

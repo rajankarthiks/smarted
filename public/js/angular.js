@@ -35,6 +35,24 @@
                 });
 
             };
+
+            $scope.showWriteSmart = function($event) {
+
+                $mdDialog.show({
+                    controller: function($scope,$mdDialog) {
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                    },
+                    templateUrl: '/html/write-smart.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                    fullscreen: true
+                });
+
+            };
+
         })
         .controller('AppCtrl', ['$interval',
             function($interval) {

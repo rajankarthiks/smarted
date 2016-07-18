@@ -30,8 +30,8 @@
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                     <li class="mdl-menu__item">
-                        <a href="/">
-                        <i class="material-icons" role="presentation">home</i> Home</a>
+                        <a href="/">Home</a>
+                        <a href="/write-smart">Write Smart</a>
                     </li>
                 </ul>
             </div>
