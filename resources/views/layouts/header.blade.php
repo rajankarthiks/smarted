@@ -31,8 +31,10 @@
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                     <li class="mdl-menu__item">
                         <a href="/">Home</a>
-                        <a href="/write-smart">Write Smart</a>
                     </li>
+                    <li class="mdl-menu__item">
+                        <a href="/write-smart">Write Smart</a>
+                    </li>                    
                 </ul>
             </div>
         </header>
