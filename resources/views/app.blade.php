@@ -20,7 +20,7 @@
                 </span>
             </span>
         </a>
-        <a class="tile tile-lg tile-sqr tile-green ripple-effect" href="#" ng-click="showQuizzBot();">
+        <a class="tile tile-lg tile-sqr tile-green ripple-effect" href="#">
             <span class="content-wrapper">
                 <span class="tile-content">
                     <span class="tile-img"></span>
