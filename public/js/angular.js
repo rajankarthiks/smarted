@@ -51,6 +51,22 @@
 
             };
 
+            $scope.showQuizzBot = function($event) {
+
+                $mdDialog.show({
+                    controller: function($scope,$mdDialog) {
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                    },
+                    templateUrl: '/html/quizz-bot.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                });
+
+            };            
+
         })
         .controller('AppCtrl', ['$interval',
             function($interval) {
