@@ -1,5 +1,6 @@
 # SmartEd Solutions
 
+
 SmartEd is an ecosystem of smart and intelligent educational solutions / services wrapped in a web application with powerful features backed by **Artificial Intelligence**. We believe AIEd will be the Next Generation education systems for providing personalised education with superior learning experiences focusing on accessibility and availability on any device at any time. With the help of SmartAIEd we can provide an enjoyable, immersive learning experience to truly fulfill and enhance the knowledge of the learners.
 
 SmartEd attempts to take the pain out of developing and implementing smart and intelligent services across products / solutions being offered by educational companies by easing common tasks used in the majority of AIEd projects, such as *Natural Language Processing, Speech Recognition, Real time intelligent support, and Understanding the learners*.
