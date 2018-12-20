@@ -1,27 +1,51 @@
-# Laravel PHP Framework
+# SmartEd Solutions
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+SmartEd is an ecosystem of smart and intelligent educational solutions / services wrapped in a web application with powerful features backed by **Artificial Intelligence**. We believe AIEd will be the Next Generation education systems for providing personalised education with superior learning experiences focusing on accessibility and availability on any device at any time. With the help of SmartAIEd we can provide an enjoyable, immersive learning experience to truly fulfill and enhance the knowledge of the learners.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+SmartEd attempts to take the pain out of developing and implementing smart and intelligent services across products / solutions being offered by educational companies by easing common tasks used in the majority of AIEd projects, such as *Natural Language Processing, Speech Recognition, Real time intelligent support, and Understanding the learners*.
 
-## Official Documentation
+SmartEd Solutions is accessible, yet powerful, providing tools needed for developing smart and intelligent applications.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+## Demo Link
 
-## Contributing
+Working demo for sample implementation can be found on [SmartAIEd Website](https://smarted.karthikrajan.com).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Solutions and Services
 
-## Security Vulnerabilities
+	* Write Smart
+	* Quizz Bot
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Further Developments
 
-## License
+**Write Smart** will be improved with Intelligent Text Analysis and Language Modelling with following features:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+	* Word Breaking
+	* Recognizing informal language
+	* Spotting common errors
+	* Fixing Homonyms
+	* Key Phrase Extracion / Topic Detection
+	* Understanding Sequence Repetitions
+	* Next Word Completions
+
+**Quizz Bot** is an intelligent and smart assessment / quiz application for assessing the learners interactively with focus on accessibility. ( *Work in progress* )
+
+	* Intelligent Assessment Bot
+	* Smart Visual / Voice Interface
+	* Intent Recognition
+
+## Technology Stack
+
+SmartAIEd is composed of the following technologies / standards.
+
+	* PHP
+	* Laravel Framework
+	* Angular Js
+	* Material Design
+	* Microsoft Cognitive Services
+	* Wit.ai
+	* Google Machine Learning
+
+## Vision
+
+Build a platform for providing smart & intelligent solutions to make existing products / services more smarter and intelligent by harnessing the power of Artificial Intelligence.

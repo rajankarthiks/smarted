@@ -17,6 +17,57 @@
                 }
             };
         }])
+        .controller('AboutController', function($scope,$mdDialog) {
+
+            $scope.showAbout = function($event) {
+
+                $mdDialog.show({
+                    controller: function($scope,$mdDialog) {
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                    },
+                    templateUrl: '/html/about-dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                });
+
+            };
+
+            $scope.showWriteSmart = function($event) {
+
+                $mdDialog.show({
+                    controller: function($scope,$mdDialog) {
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                    },
+                    templateUrl: '/html/write-smart.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                });
+
+            };
+
+            $scope.showQuizzBot = function($event) {
+
+                $mdDialog.show({
+                    controller: function($scope,$mdDialog) {
+                        $scope.cancel = function() {
+                            $mdDialog.cancel();
+                        };
+                    },
+                    templateUrl: '/html/quizz-bot.html',
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                });
+
+            };            
+
+        })
         .controller('AppCtrl', ['$interval',
             function($interval) {
                 var self = this;

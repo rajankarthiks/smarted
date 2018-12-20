@@ -22,13 +22,18 @@
         <header class="mdl-layout__header">
             <div role="button" class="mdl-layout__drawer-button"><i class="material-icons">menu</i></div>
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">SmartEd Ecosystem</span>
+                <span class="mdl-layout-title">SmartAIEd</span>
                 <div class="mdl-layout-spacer"></div>
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
                     <i class="material-icons">more_vert</i>
                 </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li class="mdl-menu__item">Home</li>
+                    <li class="mdl-menu__item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="mdl-menu__item">
+                        <a href="/write-smart">Write Smart</a>
+                    </li>                    
                 </ul>
             </div>
         </header>
